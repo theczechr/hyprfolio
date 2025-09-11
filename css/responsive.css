@@ -1,0 +1,460 @@
+@media screen and (max-width: 767px) {
+  /* Adjust font sizes for readability on small screens */
+  :root {
+    --fs-xs: 0.6rem;
+    --fs-sm: 0.7rem;
+    --fs-md: 0.8rem;
+    --fs-lg: 0.9rem;
+    --fs-xl: 1rem;
+    --fs-2xl: 1.1rem;
+    --fs-3xl: 1.2rem;
+    --fs-4xl: 1.3rem;
+  }
+
+  /* Scale down terminal font for mobile views */
+  .terminal {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.2px !important;
+    font-family: "Courier New", monospace !important; /* Narrower font for mobile */
+  }
+
+  .terminal-line {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Scale down terminal padding */
+  .terminal {
+    padding: 0.5rem !important;
+  }
+
+  /* Make ASCII art display properly on mobile */
+  .terminal pre,
+  .terminal code {
+    font-size: 0.6rem !important;
+    line-height: 1 !important;
+    letter-spacing: -0.3px !important;
+    white-space: pre !important;
+    font-family: "Courier New", monospace !important;
+  }
+
+  /* Mobile login screen adjustments */
+  #login-screen .login-form {
+    width: 90%;
+    max-width: 320px;
+    padding: 1.5rem;
+  }
+
+  /* Mobile waybar adjustments */
+  #waybar {
+    height: 40px;
+    padding: 0 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #waybar .workspace-buttons {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    max-width: calc(100% - 80px);
+  }
+
+  #waybar .workspace {
+    width: 36px;
+    height: 36px;
+    font-size: var(--fs-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Mobile-friendly workspace buttons */
+  #waybar .workspace.mobile-friendly {
+    min-width: 36px;
+    min-height: 36px;
+    font-size: var(--fs-md);
+    font-weight: bold;
+    border-radius: 6px;
+    margin: 2px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  #waybar .workspace.mobile-friendly:active {
+    transform: scale(0.9);
+  }
+
+  #waybar .workspace.mobile-friendly.active {
+    background-color: var(--color-accent-blue);
+    color: white;
+  }
+
+  #waybar .center {
+    display: none;
+  }
+
+  #waybar .right {
+    display: flex;
+    align-items: center;
+    width: 70px;
+    justify-content: flex-end;
+  }
+
+  #waybar .window-title {
+    display: none;
+  }
+
+  /* Mobile desktop container adjustments */
+  #desktop-container {
+    top: 40px; /* Match waybar height */
+  }
+
+  /* Mobile simplified mode toggle */
+  #mobile-toggle {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-accent-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  #mobile-toggle:hover,
+  #mobile-toggle:focus {
+    transform: scale(1.05);
+  }
+
+  #mobile-toggle:active {
+    transform: scale(0.95);
+    background-color: var(--color-accent-magenta);
+  }
+
+  /* Windows will be full screen on mobile by default */
+  .window {
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    border-radius: 0;
+  }
+
+  /* Increase padding for mobile touch targets */
+  .window-control {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 14px !important;
+    margin-left: 2px;
+  }
+
+  .window-titlebar {
+    height: 40px !important;
+    padding: 0 12px !important;
+  }
+
+  /* Alternative mobile view (when toggled) */
+  body.mobile-simplified {
+    background-color: var(--color-bg-secondary);
+  }
+
+  body.mobile-simplified #desktop {
+    display: flex !important;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  body.mobile-simplified #waybar {
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  body.mobile-simplified #waybar .workspace-buttons {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    max-width: calc(100% - 80px);
+  }
+
+  body.mobile-simplified #waybar .center {
+    display: none;
+  }
+
+  body.mobile-simplified #waybar .right {
+    display: flex;
+    align-items: center;
+  }
+
+  body.mobile-simplified #desktop-container {
+    position: relative;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+  }
+
+  body.mobile-simplified .window {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px;
+    margin-bottom: 16px;
+    border-radius: var(--border-radius-md);
+    animation: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, margin 0.3s ease;
+  }
+
+  body.mobile-simplified .window.minimized {
+    display: block;
+    height: 48px !important;
+    min-height: unset;
+    overflow: hidden;
+    opacity: 0.8;
+    margin-bottom: 8px;
+    transform: scale(1);
+  }
+
+  body.mobile-simplified .window.minimized .window-content {
+    display: none;
+  }
+
+  body.mobile-simplified .window:active {
+    transform: scale(0.98);
+  }
+
+  body.mobile-simplified .window.active {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  body.mobile-simplified .terminal-container,
+  body.mobile-simplified .window-content {
+    height: 300px;
+  }
+
+  body.mobile-simplified .section-container {
+    padding: 16px;
+  }
+
+  /* Mobile touch-optimized terminal */
+  body.mobile-simplified .terminal {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.2px !important;
+    padding: 0.5rem !important;
+    font-family: "Courier New", monospace !important;
+  }
+
+  /* Custom scrollbars for mobile */
+  body.mobile-simplified ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  body.mobile-simplified ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  /* Mobile menu (bottom navigation) - Hiding it per new design */
+  #mobile-menu {
+    display: none;
+  }
+
+  body.mobile-simplified #mobile-menu {
+    display: none; /* Hide the bottom menu completely */
+  }
+
+  /* Add ripple effect for mobile interactions */
+  .mobile-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-ripple::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.2) 10%,
+      transparent 10.01%
+    );
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+
+  .mobile-ripple:active::after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+  }
+
+  /* Enhanced mobile keyboard input */
+  body.mobile-simplified .terminal-input {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+
+  /* Responsive modal dialogs */
+  .dialog-modal {
+    width: 90% !important;
+    max-width: 350px !important;
+  }
+}
+
+/* Tablets and small desktops */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Adjust window sizes for medium screens */
+  .window {
+    min-width: 60%;
+    min-height: 50%;
+  }
+
+  /* Adjust waybar for tablets */
+  #waybar {
+    padding: 0 15px;
+  }
+
+  /* Hide mobile toggle on tablet+ */
+  #mobile-toggle {
+    display: none;
+  }
+}
+
+/* Larger desktops */
+@media screen and (min-width: 1024px) {
+  /* Hide all mobile-specific elements */
+  #mobile-toggle,
+  #mobile-menu {
+    display: none;
+  }
+
+  /* Standard Hyprland desktop experience */
+  .window {
+    min-width: 400px;
+    min-height: 300px;
+  }
+}
+
+/* Handle portrait vs landscape on mobile */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  /* Adjust for landscape mobile */
+  body.mobile-simplified .window {
+    min-height: 150px;
+  }
+
+  body.mobile-simplified .terminal-container,
+  body.mobile-simplified .window-content {
+    height: 150px;
+  }
+
+  /* Adjust mobile menu for landscape */
+  #mobile-menu {
+    padding: 4px 0;
+  }
+
+  .mobile-menu-item {
+    flex-direction: row;
+    font-size: 0.7rem;
+  }
+
+  .mobile-menu-icon {
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-right: 4px;
+  }
+}
+
+/* Print styles - simplified version for printing */
+@media print {
+  #boot-screen,
+  #login-screen,
+  #waybar,
+  #mobile-toggle,
+  #mobile-menu {
+    display: none !important;
+  }
+
+  #desktop {
+    display: block !important;
+    background: white;
+  }
+
+  #desktop-container {
+    position: static;
+    display: block;
+  }
+
+  .window {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+
+  .window-titlebar {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .window-controls {
+    display: none;
+  }
+
+  .terminal {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* High contrast mode for accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --color-bg-primary: #000 !important;
+    --color-fg-primary: #fff !important;
+    --color-accent-blue: #0080ff !important;
+    --color-accent-green: #00ff00 !important;
+    --color-accent-red: #ff0000 !important;
+  }
+
+  .window {
+    border: 2px solid white !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

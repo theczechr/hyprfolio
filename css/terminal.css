@@ -1,0 +1,179 @@
+.terminal-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0; /* Ensure no extra padding pushes content down */
+}
+
+/* Terminal colors based on theme */
+.terminal-color-black {
+  color: var(--color-terminal-black);
+}
+.terminal-color-red {
+  color: var(--color-terminal-red);
+}
+.terminal-color-green {
+  color: var(--color-terminal-green);
+}
+.terminal-color-yellow {
+  color: var(--color-terminal-yellow);
+}
+.terminal-color-blue {
+  color: var(--color-terminal-blue);
+}
+.terminal-color-magenta {
+  color: var(--color-terminal-magenta);
+}
+.terminal-color-cyan {
+  color: var(--color-terminal-cyan);
+}
+.terminal-color-white {
+  color: var(--color-terminal-white);
+}
+.terminal-color-bright-black {
+  color: var(--color-terminal-bright-black);
+}
+.terminal-color-bright-red {
+  color: var(--color-terminal-bright-red);
+}
+.terminal-color-bright-green {
+  color: var(--color-terminal-bright-green);
+}
+.terminal-color-bright-yellow {
+  color: var(--color-terminal-bright-yellow);
+}
+.terminal-color-bright-blue {
+  color: var(--color-terminal-bright-blue);
+}
+.terminal-color-bright-magenta {
+  color: var(--color-terminal-bright-magenta);
+}
+.terminal-color-bright-cyan {
+  color: var(--color-terminal-bright-cyan);
+}
+.terminal-color-bright-white {
+  color: var(--color-terminal-bright-white);
+}
+
+/* Terminal interactive elements */
+.terminal {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: var(--color-fg-primary);
+  background-color: var(--color-bg-tertiary);
+  padding: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.terminal-screen {
+  flex: 0 1 auto; /* Changed from flex: 1 1 auto to prevent screen from expanding */
+  overflow-y: auto;
+  margin-bottom: 30px; /* Space for input */
+  min-height: 0; /* Allow shrinking */
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding-bottom: 10px;
+}
+
+.terminal-input {
+  display: flex;
+  width: 100%;
+  white-space: pre;
+  font-family: inherit;
+  position: relative;
+  min-height: 1.4em;
+  margin-top: 5px;
+  flex-shrink: 0; /* Prevent input from shrinking */
+  background-color: var(--color-bg-tertiary); /* Match terminal background */
+  padding: 2px 0;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 5;
+}
+
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+  color: var(--color-fg-primary);
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scanlines effect for retro terminal look */
+.terminal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 2;
+  opacity: 0.15;
+}
+
+/* Scrollbar styling */
+.terminal::-webkit-scrollbar,
+.terminal-screen::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal::-webkit-scrollbar-track,
+.terminal-screen::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.terminal::-webkit-scrollbar-thumb,
+.terminal-screen::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.terminal::-webkit-scrollbar-thumb:hover,
+.terminal-screen::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Fix for window management */
+.window-content .terminal-container {
+  max-height: none; /* Remove max-height constraint */
+  height: 100%;
+  overflow: hidden; /* Prevent scroll on container */
+}
+
+/* Ensure content is properly aligned in window */
+.window[data-type="terminal"] .window-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* Remove default padding */
+  height: calc(100% - 32px); /* Account for titlebar */
+  overflow: hidden; /* Prevent scrolling */
+}
