@@ -1,29 +1,35 @@
-# Hyprfolio
+<p align="center">
+  <img src="hyprfolio.svg" alt="Hyprfolio" height="72" />
+</p>
 
-An interactive portfolio website that simulates an Arch Linux environment with the Hyprland window manager.
+<h2 align="center">Hyprfolio</h2>
 
-## 🚀 Features
+<p align="center">
+  An interactive portfolio website that simulates an Arch Linux environment with the Hyprland window manager.
+</p>
 
-### Desktop Environment
-- **Authentic Boot Sequence**: Realistic Linux boot messages and login screen
+<p align="center">
+  <img src="boot.png" alt="Hyprfolio Boot" width="45%" />
+  <img src="desktop.png" alt="Hyprfolio Desktop" width="45%" />
+</p>
+
+## Built With
+
+- Pure HTML5, CSS3, and vanilla JavaScript
+- ES6 modules for clean architecture
+- No external dependencies or frameworks
+- Custom implementations of all features
+
+## Features
+
 - **Window Manager**: Fully functional window management with drag, resize, and snap capabilities
-- **Workspaces**: 6 independent workspaces switchable via Alt+[1-6]
 - **Waybar**: Status bar with workspace indicators and real-time clock
-- **Theme Support**: Toggle between dark and light themes (Alt+T)
+- **Terminal**: Fully functional terminal emulator with ANSI color support
+- **File System**: Fully functional file system with standard commands
+- **Mobile Support**: Mobile-optimized menu and simplified view toggle for smaller screens
 
-### Terminal Emulator
-- Full terminal emulation with ANSI color support
-- Command history navigation (arrow keys)
-- Tab completion for commands and file paths
-- Multiple terminal instances support
-- Custom prompt with current directory display
+### Custom Commands
 
-### Virtual File System
-- Complete Unix-like file system implementation
-- Standard commands: `ls`, `cd`, `pwd`, `mkdir`, `rm`, `cat`, `echo`
-- Pre-populated portfolio content in `/home/john_pork/`
-
-### Portfolio Commands
 - `neofetch` - Display system info in Arch Linux style
 - `about` - Learn about John Pork
 - `projects` - Browse portfolio projects
@@ -31,71 +37,6 @@ An interactive portfolio website that simulates an Arch Linux environment with t
 - `contact` - Get contact information
 - `resume` - View resume content
 - `help` - List all available commands
-
-## 🎮 Keyboard Shortcuts
-
-### Workspaces
-| Shortcut | Action |
-|----------|--------|
-| Alt + 1 | Switch to workspace 1 (Intro) |
-| Alt + 2 | Switch to workspace 2 (Projects) |
-| Alt + 3 | Switch to workspace 3 (Skills) |
-| Alt + 4 | Switch to workspace 4 (About) |
-| Alt + 5 | Switch to workspace 5 (Contact) |
-| Alt + 6 | Switch to workspace 6 (Interactive) |
-
-### Terminal
-| Shortcut | Action |
-|----------|--------|
-| Alt + Enter | Open new terminal |
-| Ctrl + C | Cancel command |
-| Ctrl + L | Clear terminal |
-| ↑/↓ | Navigate history |
-| Tab | Complete command/path |
-
-### Window Management
-| Shortcut | Action |
-|----------|--------|
-| Alt + Q | Close window |
-| Alt + F | Maximize/restore window |
-| Alt + H | Tile horizontally |
-| Alt + V | Tile vertically |
-| Alt + G | Tile in grid |
-
-### System
-| Shortcut | Action |
-|----------|--------|
-| Alt + T | Toggle theme |
-| Alt + M | Toggle mobile view |
-| Alt + R | Emergency repair (fixes window issues) |
-| Alt + Shift + V | Force window visibility |
-| F1 | Show/hide help |
-
-## 💻 Usage
-
-Simply run a python http server in this folder, no packages required, pure Javascript, no libraries.
-
-
-## 📱 Mobile Support
-
-The site is fully responsive with:
-- Touch gestures for window manipulation
-- Mobile-optimized menu
-- Simplified view toggle for smaller screens
-
-## 🛠️ Technical Details
-
-### Built With
-- Pure HTML5, CSS3, and vanilla JavaScript
-- ES6 modules for clean architecture
-- No external dependencies or frameworks
-- Custom implementations of all features
-
-### Architecture
-- **Modular Design**: Separated into window manager, terminal, file system, and command modules
-- **Event-Driven**: Components communicate via custom events
-- **State Management**: Centralized app state with localStorage persistence
-- **Performance Optimized**: Efficient DOM manipulation and event delegation
 
 ## 📁 Project Structure
 
@@ -117,15 +58,12 @@ xjarusr00/
 └── README.md          # This file
 ```
 
-## 🎨 Customization
+### Usage
 
-To customize the portfolio content:
-1. Edit the file system structure in `js/fileSystem.js`
-2. Modify portfolio commands in `js/commands.js`
-3. Update personal information throughout the codebase
+Run a Python HTTP server from this directory. No packages required; it's pure JavaScript with no external libraries.
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
 
-*Built with ❤️ and a lot of ☕ to showcase both technical skills and creativity*
+_Built with ❤️ and I use Arch btw._

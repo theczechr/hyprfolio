@@ -90,9 +90,6 @@ function switchWorkspace(id) {
     }
 
     window.windowManager.switchToWorkspace(id);
-
-    // Show notification about workspace change
-    showNotification(`Switched to workspace ${id}`, "info", 1500);
   }
 }
 
@@ -140,6 +137,7 @@ function simulateBootSequence() {
   const bootScreen = document.getElementById("boot-screen");
   const bootLog = document.querySelector(".boot-log");
   const loginScreen = document.getElementById("login-screen");
+  const desktop = document.getElementById("desktop");
 
   bootScreen.classList.add("active");
 
@@ -163,13 +161,7 @@ function simulateBootSequence() {
     { text: "[ OK ] Reached target Local File Systems.", delay: 200 },
     { text: "[ OK ] Started User Manager for UID 1000.", delay: 100 },
     { text: "[ OK ] Created slice User Slice of user.", delay: 100 },
-    { text: "[ OK ] Started Session c1 of user.", delay: 300 },
     { text: "hyprfolio-kernel: Initializing CPU cores...", delay: 300 },
-    {
-      text: "hyprfolio-kernel: CPU features: sse2 avx2 html5 webgl",
-      delay: 200,
-    },
-    { text: "[ OK ] Found device /dev/localhost:8000", delay: 150 },
     { text: "[ OK ] Started Apply Kernel Variables.", delay: 100 },
     { text: "[ OK ] Mounted Javascript Virtual Filesystem.", delay: 200 },
     { text: "[ OK ] Started D-Bus System Message Bus.", delay: 150 },
@@ -177,24 +169,11 @@ function simulateBootSequence() {
       text: "NetworkManager[341]: <info> NetworkManager (version 1.30.0) starting...",
       delay: 200,
     },
-    {
-      text: "NetworkManager[341]: <info> Web hardware radio set enabled",
-      delay: 100,
-    },
-    { text: "Starting Hyprland Window Manager...", delay: 400 },
-    { text: "[ OK ] Started Hyprland Window Manager.", delay: 500 },
-    { text: "Loading virtual filesystem...", delay: 300 },
-    { text: "Optimizing Window Manager for browser rendering...", delay: 200 },
-    { text: "Preparing user interface components...", delay: 200 },
-    { text: "Loading terminal environment...", delay: 300 },
+    { text: "Starting Hyprland Window Manager...", delay: 200 },
+    { text: "[ OK ] Started Hyprland Window Manager.", delay: 200 },
+    { text: "Loading virtual filesystem...", delay: 200 },
+    { text: "Loading terminal environment...", delay: 200 },
     { text: "[ OK ] Reached target Graphical Interface.", delay: 300 },
-    { text: "Starting Show Plymouth Boot Screen...", delay: 200 },
-    { text: "Starting Forward Password Requests to Plymouth...", delay: 100 },
-    {
-      text: "[ OK ] Started Forward Password Requests to Plymouth.",
-      delay: 100,
-    },
-    { text: "[ OK ] Started Show Plymouth Boot Screen.", delay: 200 },
     { text: "System initialization complete.", delay: 400 },
   ];
 
@@ -223,13 +202,18 @@ function simulateBootSequence() {
 
   function displayNextMessage() {
     if (currentMessageIndex >= bootMessages.length) {
-      // All messages displayed, show login screen after a delay
       setTimeout(() => {
         bootScreen.classList.add("fade-out");
         setTimeout(() => {
           bootScreen.classList.remove("active", "fade-out");
-          loginScreen.classList.add("active");
-          setupLoginScreen();
+          if (loginScreen) {
+            loginScreen.classList.remove("active");
+          }
+          if (desktop) {
+            desktop.style.display = "block";
+          }
+          AppState.isLoggedIn = true;
+          initializeDesktop();
         }, 1000);
       }, 500);
       return;
@@ -253,36 +237,6 @@ function simulateBootSequence() {
 
   // Start displaying messages after a short delay
   setTimeout(displayNextMessage, 800);
-}
-
-/**
- * Setup login screen event handlers
- */
-function setupLoginScreen() {
-  const loginButton = document.getElementById("login-button");
-  const passwordInput = document.getElementById("login-password");
-  const loginScreen = document.getElementById("login-screen");
-  const desktop = document.getElementById("desktop");
-
-  // Login on button click or Enter key
-  const handleLogin = () => {
-    loginScreen.classList.remove("active");
-    desktop.style.display = "block";
-    AppState.isLoggedIn = true;
-
-    // Initialize the desktop environment
-    initializeDesktop();
-  };
-
-  loginButton.addEventListener("click", handleLogin);
-  passwordInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      handleLogin();
-    }
-  });
-
-  // Auto-focus password input
-  passwordInput.focus();
 }
 
 /**
