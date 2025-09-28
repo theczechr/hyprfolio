@@ -38,7 +38,7 @@
 - `resume` - View resume content
 - `help` - List all available commands
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 xjarusr00/
@@ -62,7 +62,7 @@ xjarusr00/
 
 Run a Python HTTP server from this directory. No packages required; it's pure JavaScript with no external libraries.
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
